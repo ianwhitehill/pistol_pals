@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="registration">
+            <h1>registration</h1>
+            {% with messages = get_flashed_messages() %}     
+            {% if messages %}                            
+                {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            <form action="/user/register/save" method="POST">
+                <div>
+                    <label for="username">username: </label>
+                    <input type="text" class="form-control" name="username">
+                </div>
+                <div>
+                    <label for="first_name">first name: </label>
+                    <input type="text" class="form-control" name="first_name">
+                </div>
+                <div>
+                    <label for="last_name">last name: </label>
+                    <input type="text" class="form-control" name="last_name">
+                </div>
+                <div>
+                    <label for="email">email:</label>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <div>
+                    <label for="password">password: </label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <div>
+                    <label for="confirm_password">confirm password: </label>
+                    <input type="password" class="form-control" name="confirm_password">
+                </div>
+                <div>
+                    <label for="role_id">role: </label>
+                    <select name="role_id">
+                        <option value="3">member</option>
+                        <option value="2">captain</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sight_id">sight: </label>
+                    <select name="sight_id">
+                        <option value="1">iron</option>
+                        <option value="2">laser</option>
+                        <option value="3">red dot</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <a href="/">Go back</a>
+    </div>
+<body>
+</html>
