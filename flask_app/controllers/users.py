@@ -19,7 +19,7 @@ def register_user():
     # validate users info 
     if not User.validate_reg(request.form):
         print("not valid")
-        return redirect("/")
+        return redirect("/user/register")
     #hash the password
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     print(pw_hash)
@@ -35,10 +35,15 @@ def register_user():
     }
     print(request.form)
     user_id = User.create_user(data)
-    
-    flash("You've been registered. Please log in.")
-    return redirect("/")
 
+    session["id"] = user_id
+    session["first_name"] = request.form["first_name"]
+    session["role_id"] = request.form["role_id"]
+
+    if request.form["role_id"] == "2":
+        return render_template("create_team.html")
+    else: 
+        return render_template("standings.html")
 
 @app.route("/user/login", methods=['POST'])
 def login_user():
@@ -61,6 +66,7 @@ def login_user():
     # else put their id into session 
     session["user_id"] = user_in_db.id
     session["first_name"] = user_in_db.first_name
+    session["role_id"] = user_in_db.role_id
     print("id in session")
     return redirect("/user/dashboard")
 
