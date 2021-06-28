@@ -7,7 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <nav class="nav_bar">
+        <a href="">Standings</a>
+        <a href="">Your Team</a>
+        <!-- put conditional if team is already created -->
+        {% if session["role_id"] == 2 %}
+        <a href="/create_team">Create Team</a>
+        {% endif %}
+        <a href="">Blog</a>
+        <a href="/user/logout">Logout</a>
+    </nav>
+ 
     <p>this page will be a "waiting" room for the team members whenn  they first log in and register before they have been selected for a team.</p>
 </body>
 </html>

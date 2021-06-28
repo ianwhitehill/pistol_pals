@@ -12,19 +12,19 @@ class User:
         self.password = data["password"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
-        self.team_id = None
-        self.role_id = None
-        self.sight_id = None
+        self.team_id = data["team_id"]
+        self.role_id = data["role_id"]
+        self.sight_id = data["sight_id"]
 
 
-    # @classmethod
-    # def unassigned_users(cls):
-    #     query = "SELECT * FROM users;"
-    #     results = connectToMySQL("pp").query_db(query)
-    #     users = []
-    #     for user in results: 
-    #         users.append(cls(user))
-    #     return users
+    @classmethod
+    def unassigned_users(cls):
+        query = "SELECT * FROM users WHERE users.role_id = 3 AND users.team_id IS null;"
+        results = connectToMySQL("pistol_pals_personal").query_db(query)
+        unassigned_users = []
+        for user in results: 
+            unassigned_users.append(cls(user))
+        return unassigned_users
 
     @classmethod
     def create_user(cls, data):

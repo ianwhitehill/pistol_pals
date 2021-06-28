@@ -36,12 +36,13 @@ def register_user():
     print(request.form)
     user_id = User.create_user(data)
 
-    session["id"] = user_id
+    session["user_id"] = user_id
     session["first_name"] = request.form["first_name"]
     session["role_id"] = request.form["role_id"]
 
     if request.form["role_id"] == "2":
-        return render_template("create_team.html")
+        users = User.unassigned_users()
+        return render_template("create_team.html", users =  users)
     else: 
         return render_template("standings.html")
 
@@ -67,15 +68,20 @@ def login_user():
     session["user_id"] = user_in_db.id
     session["first_name"] = user_in_db.first_name
     session["role_id"] = user_in_db.role_id
+    print("ROLE ID")
+    print(user_in_db.role_id)
+    print(user_in_db.last_name)
+    print(user_in_db.sight_id)
+    session["last_name"] = user_in_db.last_name
     print("id in session")
     return redirect("/user/dashboard")
 
-# put conditionals here depending on the role id
 @app.route("/user/dashboard")
 def user_homepage():
     if not "user_id" in session:
         return redirect("/")
     return render_template("standings.html")
+
 
 @app.route("/user/logout")
 def logout():
