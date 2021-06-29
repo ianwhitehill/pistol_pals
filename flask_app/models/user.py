@@ -86,4 +86,8 @@ class User:
             is_valid = False
 
         return is_valid
-            
+
+    @classmethod
+    def assign_team_id(cls, data):
+        query  = "UPDATE users SET team_id = %(team_id)s WHERE users.id = %(user_id)s;"
+        return connectToMySQL("pistol_pals_personal").query_db(query, data)        

@@ -68,10 +68,6 @@ def login_user():
     session["user_id"] = user_in_db.id
     session["first_name"] = user_in_db.first_name
     session["role_id"] = user_in_db.role_id
-    print("ROLE ID")
-    print(user_in_db.role_id)
-    print(user_in_db.last_name)
-    print(user_in_db.sight_id)
     session["last_name"] = user_in_db.last_name
     print("id in session")
     return redirect("/user/dashboard")

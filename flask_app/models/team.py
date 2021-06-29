@@ -1,4 +1,5 @@
 
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask import request
 from flask import flash
 
@@ -17,10 +18,15 @@ class Team:
             flash("Cannot select the same member.")
             is_valid = False
 
-        if len(data["team_name"]) < 2:
+        if len(data["name"]) < 2:
             flash("Team name must be longer than 2 characters.")
             is_valid = False
 
         return is_valid
+
+    @classmethod
+    def create_team(cls, data):
+        query = "INSERT INTO teams (name, captain_id) VALUES (%(name)s, %(captain_id)s);"
+        return connectToMySQL("pistol_pals_personal").query_db(query, data)
 
 
