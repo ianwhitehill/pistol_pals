@@ -1,5 +1,5 @@
 from flask_app import app
-from flask_app.controllers import users, teams
+from flask_app.controllers import users, teams, blogs
 # import controllers
 
 if __name__ == "__main__":
