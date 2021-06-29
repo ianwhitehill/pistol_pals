@@ -44,8 +44,12 @@ def save_team():
 
 @app.route("/review/<team_id>")
 def review_team(team_id):
-    # get team by id and display info by jinja on template
-    return render_template("review_team.html")
+    data = {
+        "team_id": team_id
+    }
+    team_in_db = team.Team.view_team_by_id(data)
+
+    return render_template("review_team.html", team = team_in_db)
 
 
 

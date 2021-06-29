@@ -13,14 +13,15 @@ class User:
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
         self.team_id = data["team_id"]
-        self.role_id = data["role_id"]
-        self.sight_id = data["sight_id"]
+        self.role = data["role"]
+        self.sight = data["sight"]
+        self.total_score = 0
 
 
     @classmethod
     def unassigned_users(cls):
-        query = "SELECT * FROM users WHERE users.role_id = 3 AND users.team_id IS null;"
-        results = connectToMySQL("pistol_pals_personal").query_db(query)
+        query = "SELECT * FROM users WHERE users.role = 3 AND users.team_id IS null;"
+        results = connectToMySQL("pp").query_db(query)
         unassigned_users = []
         for user in results: 
             unassigned_users.append(cls(user))
@@ -28,23 +29,30 @@ class User:
 
     @classmethod
     def create_user(cls, data):
-        query = "INSERT INTO users (username, first_name, last_name, email, password, created_at, updated_at, role_id, sight_id) VALUES (%(username)s, %(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW(), %(role_id)s, %(sight_id)s);"
-        return connectToMySQL("pistol_pals_personal").query_db(query, data)
+        query = "INSERT INTO users (username, first_name, last_name, email, password, created_at, updated_at, role, sight) VALUES (%(username)s, %(first_name)s, %(last_name)s, %(email)s, %(password)s, NOW(), NOW(), %(role)s, %(sight)s);"
+        return connectToMySQL("pp").query_db(query, data)
 
 
     @classmethod
     def get_user_by_email(cls, data):
         query = "SELECT * FROM users WHERE users.email = %(email)s;"
-        results = connectToMySQL("pistol_pals_personal").query_db(query,data)
+        results = connectToMySQL("pp").query_db(query,data)
         print(results)
         if len(results) < 1:
             return False
         return cls(results[0])
 
     @classmethod
+    def get_user_by_id(cls,data):
+        query ="SELECT * FROM users WHERE users.id = %(user_id)s;"
+        result = connectToMySQL("pp").query_db(query,data)
+        print(result)
+        return cls(result[0])
+
+    @classmethod
     def get_user_by_username(cls, data):
         query = "SELECT * FROM users WHERE users.username = %(username)s;"
-        results = connectToMySQL("pistol_pals_personal").query_db(query,data)
+        results = connectToMySQL("pp").query_db(query,data)
         print(results)
         if len(results) < 1:
             return False
@@ -90,4 +98,4 @@ class User:
     @classmethod
     def assign_team_id(cls, data):
         query  = "UPDATE users SET team_id = %(team_id)s WHERE users.id = %(user_id)s;"
-        return connectToMySQL("pistol_pals_personal").query_db(query, data)        
+        return connectToMySQL("pp").query_db(query, data)        
