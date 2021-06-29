@@ -32,7 +32,6 @@ def save_team():
         "user_id": request.form["member_2"],
         "team_id": team_id
     }
-
     captain_data = {
         "user_id":request.form["captain_id"],
         "team_id": team_id
