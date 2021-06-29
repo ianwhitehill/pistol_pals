@@ -22,7 +22,7 @@
                 {% endif %}
             {% endwith %}
     <form action="/create_team/save" method="post">
-        Team name: <input type="text" name="team_name"><br>
+        Team name: <input type="text" name="name"><br>
         <p>Team captain: {{session["first_name"]}} {{session["last_name"]}} </p>
         Shooter 2: <select name="member_1">
             {% for user in users %}
