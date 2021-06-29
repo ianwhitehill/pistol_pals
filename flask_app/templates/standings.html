@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="nav_bar">
-        <a href="">Standings</a>
-        <a href="">Your Team</a>
-        <!-- put conditional if team is already created -->
-        {% if session["role_id"] == 2 %}
-        <a href="/create_team">Create Team</a>
-        {% endif %}
-        <a href="">Blog</a>
-        <a href="/user/logout">Logout</a>
+      <a href="">Standings</a>
+      <a href="">Your Team</a>
+      <!-- put conditional if team is already created -->
+      {% if session["role_id"] == 2 %}
+      <a href="/create_team">Create Team</a>
+      {% endif %}
+      <a href="/create_blog">Blog</a>
+      <a href="/user/logout">Logout</a>
     </nav>
- 
-    <p>this page will be a "waiting" room for the team members whenn  they first log in and register before they have been selected for a team.</p>
-</body>
+
+    <p>
+      this page will be a "waiting" room for the team members whenn they first
+      log in and register before they have been selected for a team.
+    </p>
+  </body>
 </html>

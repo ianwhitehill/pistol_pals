@@ -7,6 +7,22 @@
     <title>New Blog</title>
   </head>
   <body>
-    <h1>new blog</h1>
+    <nav class="nav_bar">
+      <a href="">Standings</a>
+      <a href="">Your Team</a>
+      <a href="">Blog</a>
+      <a href="/user/logout">Logout</a>
+    </nav>
+    <h1>Create a Blog</h1>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <p>{{message}}</p>
+    {% endfor %} {% endif %} {% endwith %}
+    <form action="/create_team/save" method="post">
+      Blog Title: <input type="text" name="blog_title" /><br />
+      Blog Body:
+      <textarea name="blog_body" id="" cols="30" rows="10"></textarea> <br />
+      <input type="submit" value="Submit Blog" />
+    </form>
   </body>
 </html>

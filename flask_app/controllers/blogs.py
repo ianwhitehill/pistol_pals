@@ -4,11 +4,11 @@ from flask_app.models import team, user, blog
 
 @app.route("/create_blog")
 def create_blog():
-    users = blog.Blog.unassigned_users()
+    # blogs = blog.Blog.unassigned_users()
     return render_template("create_blog.html")
 
 @app.route("/create_blog/save", methods = ["POST"])
-def save_team():
-    # if not team.Team.validate_team(request.form):
+def save_blog():
+    if not blog.Blog.validate_blog(request.form):
         return redirect("/create_blog")
     
