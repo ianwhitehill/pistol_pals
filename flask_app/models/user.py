@@ -97,5 +97,5 @@ class User:
 
     @classmethod
     def assign_team_id(cls, data):
-        query  = "UPDATE users SET team_id = %(team_id)s WHERE users.id = %(user_id)s;"
+        query  = "UPDATE users SET team_id = %(team_id)s WHERE users.id IN (%(captain_id)s, %(member_1_id)s, %(member_2_id)s);"
         return connectToMySQL("pp").query_db(query, data)        

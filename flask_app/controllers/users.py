@@ -39,7 +39,7 @@ def register_user():
 
     if request.form["role"] == "2":
         users = User.unassigned_users()
-        return render_template("create_team.html", users =  users)
+        return render_template("teams/create_team.html", users =  users)
     else: 
         return render_template("standings.html")
 
