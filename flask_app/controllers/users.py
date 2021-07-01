@@ -1,7 +1,8 @@
 from flask_bcrypt import Bcrypt
 from flask_app import app
 from flask import redirect, request, render_template, flash, session
-from flask_app.models.user import User   
+from flask_app.models.user import User
+from flask_app.models import team  
 bcrypt = Bcrypt(app) 
 
 
@@ -77,7 +78,13 @@ def user_homepage():
         "user_id": session["user_id"]
     }
     user = User.get_user_by_id(data)
-    return render_template("standings.html", user = user)
+    teams = team.Team.all_teams()
+    iron = User.get_iron()
+    laser = User.get_laser()
+    red_dot = User.get_red_dot()
+
+
+    return render_template("standings.html", user = user, teams = teams, iron = iron, red_dot = red_dot, laser = laser)
 
 
 @app.route("/user/logout")

@@ -9,6 +9,7 @@ class Team:
         self.id = data["id"]
         self.name = data["name"]
         self.captain_id = data["captain_id"]
+        self.total_score = data["total_score"]
         self.members = []
 
     # this method returns a list of the members who are not captain.
@@ -88,3 +89,15 @@ class Team:
         # reassign team id to new // if the user_id remains the same it will reassign same team_id
         query = "UPDATE users SET team_id = %(team_id)s WHERE users.id IN (%(member_1)s, %(member_2)s);"
         connectToMySQL("pp").query_db(query,data2)
+
+    @classmethod
+    def all_teams(cls):
+        query = "SELECT * FROM teams ORDER BY teams.total_score DESC;"
+        results = connectToMySQL("pp").query_db(query)
+        teams = []
+        for team in results:
+                teams.append(cls(team))
+        print(results)
+        print(teams)   
+        return teams
+
