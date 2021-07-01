@@ -21,6 +21,68 @@
         <a href="">Blog</a>
         <a href="/user/logout">Logout</a>
     </nav>
-    <p>standings</p>
+    <section>
+      <h1>Team Standings </h1>
+      <div class="teams">
+        {% for team in teams%}
+        <p>{{team.name}} / {{team.total_score}} / <a href="/review/{{team.id}}">view team</a></p>
+        {% endfor %}
+      </div>
+
+      <div class="sight_info">
+        <h3>Iron Sights</h3>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            {% for user in laser %}
+            <tr>
+              <td>{{user.first_name}}{{user.last_name}}</td>
+              <td>{{user.total_score}}</td>
+            </tr>
+            {% endfor %}      
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sight_info">
+        <h3>Laser Sights</h3>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            {% for user in laser %}
+            <tr>
+              <td>{{user.first_name}}{{user.last_name}}</td>
+              <td>{{user.total_score}}</td>
+            </tr>
+            {% endfor %}      
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sight_info">
+        <h3>Red Dot Sights</h3>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            {% for user in red_dot %}
+            <tr>
+              <td>{{user.first_name}}{{user.last_name}}</td>
+              <td>{{user.total_score}}</td>
+            </tr>
+            {% endfor %}      
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
 </body>
 </html>
