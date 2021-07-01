@@ -9,10 +9,14 @@
 <body>
 <h1>Team Name: {{team.name}}</h1>
 Team members: 
-{% for user in team.members %}
- <p>{{user.first_name}} {{user.last_name}} 
+
+<p>captain: {{captain.first_name}} {{captain.last_name}}</p>
+{% for user in members %}
+<p>members: {{user.first_name}} {{user.last_name}}</p>
 {% endfor %}
 <br><a href="/user/dashboard">continue</a>
-<a href="/review/{{team_id}}">edit</a>
+{% if team.captain_id == session["user_id"]%}
+<a href="/edit/{{team.id}}">edit</a>
+{% endif %}
 </body>
 </html>

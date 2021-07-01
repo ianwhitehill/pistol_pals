@@ -8,6 +8,7 @@
   </head>
   <body>
     <nav class="nav_bar">
+<<<<<<< HEAD
       <a href="">Your Team</a>
       <!-- put conditional if team is already created -->
       {% if session["role"] == 2 %} {% if user.team_id == None %}
@@ -22,4 +23,83 @@
     </nav>
     <p>standings</p>
   </body>
+=======
+        <a href="/myteam/{{user.team_id}}">My Team</a>
+        <!-- put conditional if team is already created -->
+        {% if session["role"] == 2 %}
+        {% if user.team_id == None %}
+        <a href="/create_team">Create Team</a>
+        {% endif %}
+        {% if user.team_id != None %}
+        <a href="/review/{{user.team_id}}">View Team</a>
+        {% endif %}
+        {% endif %}
+        <a href="">Blog</a>
+        <a href="/user/logout">Logout</a>
+    </nav>
+    <section>
+      <h1>Team Standings </h1>
+      <div class="teams">
+        {% for team in teams%}
+        <p>{{team.name}} / {{team.total_score}} / <a href="/review/{{team.id}}">view team</a></p>
+        {% endfor %}
+      </div>
+
+      <div class="sight_info">
+        <h3>Iron Sights</h3>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            {% for user in iron %}
+            <tr>
+              <td>{{user.first_name}} {{user.last_name}}</td>
+              <td>{{user.total_score}}</td>
+            </tr>
+            {% endfor %}      
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sight_info">
+        <h3>Laser Sights</h3>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            {% for user in laser %}
+            <tr>
+              <td>{{user.first_name}} {{user.last_name}}</td>
+              <td>{{user.total_score}}</td>
+            </tr>
+            {% endfor %}      
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sight_info">
+        <h3>Red Dot Sights</h3>
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Points</th>
+          </thead>
+          <tbody>
+            {% for user in red_dot %}
+            <tr>
+              <td>{{user.first_name}} {{user.last_name}}</td>
+              <td>{{user.total_score}}</td>
+            </tr>
+            {% endfor %}      
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+</body>
+>>>>>>> 7f3f214f837929d69f03580dd5a481e871114296
 </html>

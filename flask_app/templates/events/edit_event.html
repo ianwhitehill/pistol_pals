@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit event</title>
+</head>
+<body>
+    <h2>EDIT</h2>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    <form action="/update_event/{{event.id}}" method="POST">
+        <label for="title">titile</label>
+        <input type="text" name="title" value="{{event.title}}"><br>
+        <label for="description">Genre</label>
+        <textarea type="text" name="description" value="{{event.description}}">
+        </textarea><br>
+        <label for="start_time">start time date</label>
+        <input type="datetime" name="start_time" value="{{event.description}}"><br>
+        <input type="submit">
+    </form>
+</body>
+</html>

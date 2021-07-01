@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/myteam/{{team.id}}">My Team</a>
+    <a href="/user/dashboard">Standings</a>
+    <a href="">Blog</a>
+    <a href="/user/logout">Logout</a>
+    <h1>Edit {{team.name}}</h1>
+
+    <form action="/update/{{team.id}}" method="POST">
+        Team name: <input type="text" name="name" value="{{team.name}}"><br>
+        <p>Team captain: {{session["first_name"]}} {{session["last_name"]}} </p>
+        <!-- shooter 1 -->
+        <input type="hidden" name="old_member_1" value="{{members[0].id}}">
+        member 1:   <select name="member_1">
+                        <option value="{{members[0].id}}">{{members[0].first_name}} {{members[0].last_name}}</option>
+                        {% for user in unassigned_users %}
+                        <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
+                        {% endfor %}
+                    </select><br>
+        <!-- shooter 2 -->
+    
+        <input type="hidden" name="old_member_2" value="{{members[1].id}}">
+        member 2:   <select name="member_2">
+                        <option value="{{members[1].id}}">{{members[1].first_name}} {{members[1].last_name}}</option>
+                        {% for user in unassigned_users %}
+                        <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
+                        {% endfor %}
+                    </select><br>
+        <input type="submit" value="save team">
+    </form>   
+    <a href="/user/dashboard">go back</a>
+</body>
+</html>

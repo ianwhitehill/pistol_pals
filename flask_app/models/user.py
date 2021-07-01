@@ -97,5 +97,32 @@ class User:
 
     @classmethod
     def assign_team_id(cls, data):
-        query  = "UPDATE users SET team_id = %(team_id)s WHERE users.id = %(user_id)s;"
-        return connectToMySQL("pp").query_db(query, data)        
+        query  = "UPDATE users SET team_id = %(team_id)s WHERE users.id IN (%(captain_id)s, %(member_1_id)s, %(member_2_id)s);"
+        return connectToMySQL("pp").query_db(query, data)     
+
+    @classmethod
+    def get_iron(cls):
+        query = "SELECT * FROM users WHERE team_id IS NOT null AND sight = 1 ORDER BY total_score DESC;"
+        results = connectToMySQL("pp").query_db(query)
+        users = []
+        for row in results:
+            users.append(cls(row))
+        return users
+
+    @classmethod
+    def get_laser(cls):
+        query = "SELECT * FROM users WHERE team_id IS NOT null AND sight = 2 ORDER BY total_score DESC;"
+        results = connectToMySQL("pp").query_db(query)
+        users = []
+        for user in results:
+            users.append(cls(user))
+        return users
+
+    @classmethod
+    def get_red_dot(cls):
+        query = "SELECT * FROM users WHERE team_id IS NOT null AND sight = 3 ORDER BY total_score DESC;"
+        results = connectToMySQL("pp").query_db(query)
+        users = []
+        for user in results:
+            users.append(cls(user))
+        return users  
