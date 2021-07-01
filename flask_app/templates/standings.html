@@ -8,19 +8,18 @@
   </head>
   <body>
     <nav class="nav_bar">
-        <a href="">Your Team</a>
-        <!-- put conditional if team is already created -->
-        {% if session["role"] == 2 %}
-        {% if user.team_id == None %}
-        <a href="/create_team">Create Team</a>
-        {% endif %}
-        {% if user.team_id != None %}
-        <a href="/review/{{user.team_id}}">View Team</a>
-        {% endif %}
-        {% endif %}
-        <a href="">Blog</a>
-        <a href="/user/logout">Logout</a>
+      <a href="">Your Team</a>
+      <!-- put conditional if team is already created -->
+      {% if session["role"] == 2 %} {% if user.team_id == None %}
+      <a href="/create_team">Create Team</a>
+      {% endif %} {% if user.team_id != None %}
+      <a href="/review/{{user.team_id}}">View Team</a>
+      {% endif %} {% endif %} {% if session["role"] == 1 %}
+      <a href="/create_blog">Create Blog</a>
+      {% endif %}
+      <a href="/view_blog">View Blog</a>
+      <a href="/user/logout">Logout</a>
     </nav>
     <p>standings</p>
-</body>
+  </body>
 </html>
