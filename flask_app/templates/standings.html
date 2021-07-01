@@ -8,7 +8,7 @@
   </head>
   <body>
     <nav class="nav_bar">
-        <a href="">Your Team</a>
+        <a href="/myteam/{{user.team_id}}">My Team</a>
         <!-- put conditional if team is already created -->
         {% if session["role"] == 2 %}
         {% if user.team_id == None %}
@@ -37,9 +37,9 @@
             <th>Points</th>
           </thead>
           <tbody>
-            {% for user in laser %}
+            {% for user in iron %}
             <tr>
-              <td>{{user.first_name}}{{user.last_name}}</td>
+              <td>{{user.first_name}} {{user.last_name}}</td>
               <td>{{user.total_score}}</td>
             </tr>
             {% endfor %}      
@@ -57,7 +57,7 @@
           <tbody>
             {% for user in laser %}
             <tr>
-              <td>{{user.first_name}}{{user.last_name}}</td>
+              <td>{{user.first_name}} {{user.last_name}}</td>
               <td>{{user.total_score}}</td>
             </tr>
             {% endfor %}      
@@ -75,7 +75,7 @@
           <tbody>
             {% for user in red_dot %}
             <tr>
-              <td>{{user.first_name}}{{user.last_name}}</td>
+              <td>{{user.first_name}} {{user.last_name}}</td>
               <td>{{user.total_score}}</td>
             </tr>
             {% endfor %}      
