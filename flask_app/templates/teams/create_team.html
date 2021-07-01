@@ -34,7 +34,7 @@
             <option value="{{user.id}}">{{user.first_name}} {{user.last_name}}</option>
             {% endfor %}
         </select><br>
-        <input type="hidden" value = "{{session['user_id']}} "name="captain_id">
+        <input type="hidden" value = "{{session['user_id']}}" name="captain_id">
         <input type="submit" value="Create team">
     </form>
     <a href="/user/dashboard">create later</a>

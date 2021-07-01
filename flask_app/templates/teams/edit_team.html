@@ -7,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/myteam/{{team.id}}">My Team</a>
+    <a href="/user/dashboard">Standings</a>
+    <a href="">Blog</a>
+    <a href="/user/logout">Logout</a>
+    <h1>Edit {{team.name}}</h1>
+
     <form action="/update/{{team.id}}" method="POST">
         Team name: <input type="text" name="name" value="{{team.name}}"><br>
         <p>Team captain: {{session["first_name"]}} {{session["last_name"]}} </p>

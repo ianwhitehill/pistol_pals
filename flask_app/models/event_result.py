@@ -40,18 +40,15 @@ class Event_Results():
             event_results.team = Event(team_data)
             return event_results
 
-        @classmethod
-        def insert(cls, data):
-            query = "INSERT INTO event_results (score, target_img1, target_img2, target_img3, user_id, event_id, team_id) VALUES (%(score)s, %(target_img1)s, %(target_img2)s, %(target_img3)s, %(user_id)s, %(event_id)s, %(team_id)s)"
+    @classmethod
+    def insert(cls, data):
+        query = "INSERT INTO event_results (score, target_img1, target_img2, target_img3, user_id, event_id, team_id) VALUES (%(score)s, %(target_img1)s, %(target_img2)s, %(target_img3)s, %(user_id)s, %(event_id)s, %(team_id)s)"
 
-            connection = connectToMySQL('pp')
-            connection.query_db(query, data)
+        connection = connectToMySQL('pp')
+        connection.query_db(query, data)
 
-        @classmethod
-        def update(cls, data):
-            query = "UPDATE event_results SET score = %(score)s, target_img1 = %(target_img1)s, targat_img2 = %(target_img2)s, target_img3 = %(target_img3)s, user_id = %(user_id)s, event_id = %(event_id)s, team_id = %(team_id)s;"
-            connection = connectToMySQL('pp')
-            connection.query_db(query, data)
-
-        @classmethod
-        def delete(cls, data):
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE event_results SET score = (score)s, target_img1 = %(target_img1)s,targat_img2 = %(target_img2)s, target_img3 = (target_img3)s, user_id = %(user_id)s, event_id= %(event_id)s, team_id = %(team_id)s;"
+        connection = connectToMySQL('pp')
+        connection.query_db(query, data)

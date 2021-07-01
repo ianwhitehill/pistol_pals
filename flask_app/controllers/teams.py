@@ -89,3 +89,18 @@ def update_team(team_id):
     team.Team.update_team(data1, data2, data3)
     return redirect(f"/review/{team_id}")
 
+@app.route("/myteam/<team_id>")
+def my_team(team_id):
+    # get team info
+    team_data = {
+        "team_id": team_id
+    }
+    team_in_db = team.Team.view_team_by_id(team_data)
+
+    # get captain information
+    data = {
+        "captain_id": team_in_db.captain_id
+    }
+    captain = team.Team.get_captain(data)
+    return render_template("teams/my_team.html", team = team_in_db, captain = captain)
+
