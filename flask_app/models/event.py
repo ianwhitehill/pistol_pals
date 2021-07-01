@@ -44,7 +44,7 @@ class Event():
 
     @classmethod
     def remove(cls, data):
-        query = "DELETE FROM events WHERE id = %(id)s;"'
+        query = "DELETE FROM events WHERE id = %(id)s;"
         connection = connectToMySQL('pp')
         connection.query_db(query, data)
 

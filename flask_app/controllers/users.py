@@ -42,7 +42,7 @@ def register_user():
         users = User.unassigned_users()
         return render_template("teams/create_team.html", users =  users)
     else: 
-        return render_template("standings.html")
+        return redirect("/user/dashboard")
 
 @app.route("/user/login", methods=['POST'])
 def login_user():

@@ -69,16 +69,8 @@ class Event_Results():
         connection = connectToMySQL('pp')
         connection.query_db(query, data)
 
-<<<<<<< HEAD
-        @classmethod
-        def delete(cls, data):
+    @classmethod
+    def delete(cls, data):
             query = "DELETE FROM event_results WHERE id %(id)s"
             connection = connectToMySQL('pp')
             connection.query_db(query, data)
-=======
-    @classmethod
-    def update(cls, data):
-        query = "UPDATE event_results SET score = (score)s, target_img1 = %(target_img1)s,targat_img2 = %(target_img2)s, target_img3 = (target_img3)s, user_id = %(user_id)s, event_id= %(event_id)s, team_id = %(team_id)s;"
-        connection = connectToMySQL('pp')
-        connection.query_db(query, data)
->>>>>>> d30e8fad9b466985c35ad1282febeecee604eb8e

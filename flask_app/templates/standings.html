@@ -18,8 +18,11 @@
         <a href="/review/{{user.team_id}}">View Team</a>
         {% endif %}
         {% endif %}
-        {% if session["role"] == 1 %}
+        {% if user.role == 1 %}
         <a href="/create_blog">Create Blog</a>
+        {% endif %}
+        {% if user.role == 1 %}
+        <a href="/create_event">Create Event</a>
         {% endif %}
         <a href="/view_blog">View Blog</a>        <a href="/user/logout">Logout</a>
     </nav>
