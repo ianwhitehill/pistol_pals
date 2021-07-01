@@ -8,7 +8,6 @@
   </head>
   <body>
     <nav class="nav_bar">
-<<<<<<< HEAD
       <a href="">Your Team</a>
       <!-- put conditional if team is already created -->
       {% if session["role"] == 2 %} {% if user.team_id == None %}
@@ -23,7 +22,6 @@
     </nav>
     <p>standings</p>
   </body>
-=======
         <a href="/myteam/{{user.team_id}}">My Team</a>
         <!-- put conditional if team is already created -->
         {% if session["role"] == 2 %}
@@ -101,5 +99,4 @@
     
     </section>
 </body>
->>>>>>> 7f3f214f837929d69f03580dd5a481e871114296
 </html>
